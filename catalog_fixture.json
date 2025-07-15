@@ -1,0 +1,44 @@
+[
+{
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+        "name": "Ноутбуки",
+        "description": "Портативные и производительные"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+        "name": "Смартфорны",
+        "description": "Мощь в кармане"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+        "name": "MacBook Pro 16",
+        "description": "Твори, что хочешь",
+        "image": "",
+        "category": 1,
+        "price": 299900,
+        "created_at": "2025-07-14",
+        "updated_at": "2025-07-14"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+        "name": "Nokia 3310",
+        "description": "Классика",
+        "image": "",
+        "category": 2,
+        "price": 20000,
+        "created_at": "2025-07-14",
+        "updated_at": "2025-07-14"
+    }
+}
+]

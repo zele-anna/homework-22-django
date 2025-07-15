@@ -19,8 +19,8 @@ class Product(models.Model):
     image = models.ImageField(upload_to='catalog/images', verbose_name='Изображение', null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Категория', related_name='products')
     price = models.IntegerField(verbose_name='Цена')
-    created_at = models.DateTimeField(verbose_name='Дата создания')
-    updated_at = models.DateTimeField(verbose_name='Дата последнего изменения')
+    created_at = models.DateField(verbose_name='Дата создания')
+    updated_at = models.DateField(verbose_name='Дата последнего изменения')
 
     class Meta:
         verbose_name = 'Продукт'
