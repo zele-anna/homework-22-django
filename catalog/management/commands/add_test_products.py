@@ -1,6 +1,9 @@
+import json
+
 from django.core.management.base import BaseCommand
 from django.core.management import call_command
 from catalog.models import Category, Product
+from config.settings import BASE_DIR
 
 
 class Command(BaseCommand):
@@ -29,3 +32,22 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS(f'Продукт {product.name} успешно добавлен!'))
             else:
                 self.stdout.write(self.style.WARNING(f'Продукт {product.name} уже создан.'))
+
+        # Добавление данных из фикстуры
+        # with open('catalog_fixture.json') as file:
+        #     fixture_data = json.load(file)
+        #
+        # for item in fixture_data:
+        #     if item['model'] == 'catalog.category':
+        #         category, created = Category.objects.get_or_create(**item['fields'])
+        #         if created:
+        #             self.stdout.write(self.style.SUCCESS(f'Категория {category.name} успешно добавлена!'))
+        #         else:
+        #             self.stdout.write(self.style.WARNING(f'Категория {category.name} уже создана.'))
+        #     else:
+        #         str(item['fields']['category'])
+        #         product, created = Product.objects.get_or_create(**item['fields'])
+        #         if created:
+        #             self.stdout.write(self.style.SUCCESS(f'Продукт {product.name} успешно добавлен!'))
+        #         else:
+        #             self.stdout.write(self.style.WARNING(f'Продукт {product.name} уже создан.'))
