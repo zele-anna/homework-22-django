@@ -19,11 +19,9 @@ class Command(BaseCommand):
         category, _ = Category.objects.get_or_create(name='Тест', description='Для проверки')
 
         test_products = [
-            {'name': 'Тест 1', 'description': 'Описание тест 1', 'category': category, 'price': '1000', 'created_at': '2010-01-01', 'updated_at': '2020-06-07'},
-            {'name': 'Тест 2', 'description': 'Описание тест 2', 'category': category, 'price': '2000',
-             'created_at': '2010-01-01', 'updated_at': '2020-06-07'},
-            {'name': 'Тест 3', 'description': 'Описание тест 3', 'category': category, 'price': '3000',
-             'created_at': '2010-01-01', 'updated_at': '2020-06-07'},
+            {'name': 'Тест 1', 'description': 'Описание тест 1', 'category': category, 'price': '1000'},
+            {'name': 'Тест 2', 'description': 'Описание тест 2', 'category': category, 'price': '2000'},
+            {'name': 'Тест 3', 'description': 'Описание тест 3', 'category': category, 'price': '3000'},
         ]
 
         for product_data in test_products:
@@ -34,20 +32,4 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.WARNING(f'Продукт {product.name} уже создан.'))
 
         # Добавление данных из фикстуры
-        # with open('catalog_fixture.json') as file:
-        #     fixture_data = json.load(file)
-        #
-        # for item in fixture_data:
-        #     if item['model'] == 'catalog.category':
-        #         category, created = Category.objects.get_or_create(**item['fields'])
-        #         if created:
-        #             self.stdout.write(self.style.SUCCESS(f'Категория {category.name} успешно добавлена!'))
-        #         else:
-        #             self.stdout.write(self.style.WARNING(f'Категория {category.name} уже создана.'))
-        #     else:
-        #         str(item['fields']['category'])
-        #         product, created = Product.objects.get_or_create(**item['fields'])
-        #         if created:
-        #             self.stdout.write(self.style.SUCCESS(f'Продукт {product.name} успешно добавлен!'))
-        #         else:
-        #             self.stdout.write(self.style.WARNING(f'Продукт {product.name} уже создан.'))
+        call_command("loaddata", "catalog_fixture.json")
