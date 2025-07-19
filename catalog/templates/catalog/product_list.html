@@ -1,8 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'catalog/base.html' %}
 {% load my_tags %}
 {% block content %}
 <div class="row text-center">
-    {% for product in products %}
+    {% for product in product_list %}
     <div class="col-4">
         <div class="card w-75" style="width: 18rem;">
             <img src="{{ product.image | media_filter }}" class="card-img-top" alt="Изображение отсутствует">
@@ -10,7 +10,7 @@
                 <h5 class="card-title">{{ product.name }}</h5>
                 <p class="card-text">{{ product.description | truncatechars:100 }}</p>
                 <p>{{ product.price }}</p>
-                <a href="{% url 'catalog:product_details' product.id %}" class="btn btn-primary">Смотреть</a>
+                <a href="{% url 'catalog:product_detail' product.id %}" class="btn btn-primary">Смотреть</a>
             </div>
         </div>
     </div>
