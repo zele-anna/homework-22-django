@@ -9,8 +9,8 @@
 *раздел в разработке* 
 
 ### Использование функций и примеры работы
-1. Страница Главная [home.html](catalog/templates/home.html).
-2. Страница Контакты [contacts.html](catalog/templates/contacts.html), на которой реализована форма обратной связи.
+1. Страница Главная.
+2. Страница Контакты [contacts.html](catalog/templates/catalog/contacts.html), на которой реализована форма обратной связи.
 
 Для стилизации страниц используется Bootstrap.
 

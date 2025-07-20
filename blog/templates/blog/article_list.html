@@ -1,0 +1,11 @@
+{% extends 'blog/base.html' %}
+{% load my_tags %}
+{% block content %}
+<ul class="list-group">
+    {% for article in article_list %}
+    <a href="{% url 'blog:article_detail' article.id %}">{{ article.title }}</a>
+    {{ article.text | truncatechars:100 }}
+    <p>Просмотров: {{ article.views_counter }}</p>
+    {% endfor %}
+</ul>
+{% endblock %}
