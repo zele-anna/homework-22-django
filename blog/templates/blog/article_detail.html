@@ -2,7 +2,11 @@
 {% load my_tags %}
 {% block content %}
 <div class="row text-center">
-    <img src="{{ article.image | media_filter }}" class="card-img-top" alt="Изображение отсутствует">
+    {% if article.image %}
+        <img src="{{ article.image | media_filter }}" class="card-img-top" alt="Изображение отсутствует">
+    {% else %}
+        <p>Изображение отсутствует</p>
+    {% endif %}
     <div class="card-body">
         <h5 class="card-title">{{ article.title }}</h5>
         <p class="card-text">{{ article.text | truncatechars:100 }}</p>
