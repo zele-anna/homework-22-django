@@ -13,7 +13,9 @@
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
     <h1 class="display-4">Zelestore</h1>
     <p class="lead">Zelestore - это интернет-магазин электроники</p>
+    {% if user.is_authenticated %}
     <a href="{% url 'catalog:product_create' %}" class="btn btn-primary">Добавить продукт</a>
+    {% endif %}
 </div>
 
 <div class="container">

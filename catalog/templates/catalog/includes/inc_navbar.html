@@ -15,15 +15,31 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'catalog:contacts' %}">Контакты</a>
         </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ user.email }}
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <form method="post" action="{% url 'users:logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="dropdown-item">Выйти</button>
+              </form>
+            </li>
+          </ul>
+        </li>
+        {% else %}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Вход/регистрация
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Вход</a></li>
-            <li><a class="dropdown-item" href="#">Регистрация</a></li>
+            <li><a class="dropdown-item" href="{% url 'users:login' %}">Вход</a></li>
+            <li><a class="dropdown-item" href="{% url 'users:register' %}">Регистрация</a></li>
           </ul>
         </li>
+        {% endif %}
       </ul>
     </div>
   </div>

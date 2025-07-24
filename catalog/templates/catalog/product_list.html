@@ -10,7 +10,9 @@
                 <h5 class="card-title">{{ product.name }}</h5>
                 <p class="card-text">{{ product.description | truncatechars:100 }}</p>
                 <p>{{ product.price }}</p>
-                <a href="{% url 'catalog:product_detail' product.pk %}" class="btn btn-primary">Смотреть</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'catalog:product_detail' product.pk %}" class="btn btn-primary">Смотреть</a>
+                {% endif %}
             </div>
         </div>
     </div>
