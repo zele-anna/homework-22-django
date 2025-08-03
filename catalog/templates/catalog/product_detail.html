@@ -4,21 +4,31 @@
 <div class="row text-center">
     <div class="card mb-3">
         {% if user.is_authenticated %}
-            {% if product.image %}
-                <img src="{{ product.image | media_filter }}" class="card-img-top" alt="Изображение отсутствует">
-            {% else %}
-                <p>Изображение отсутствует</p>
+        {% if product.image %}
+        <img src="{{ product.image | media_filter }}" class="card-img-top" alt="Изображение отсутствует">
+        {% else %}
+        <p>Изображение отсутствует</p>
+        {% endif %}
+        <div class="card-body">
+            <h4 class="card-title">{{ product.category }} -> {{ product.name }}</h4>
+            <h5 class="card-title">{{ product.price }} руб.</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <p class="card-text"><small class="text-body-secondary">Добавлено: {{ product.created_at | date:"d M Y" }}</small></p>
+            <p class="card-text"><small class="text-body-secondary">Обновлено: {{ product.updated_at | date:"d M Y" }}</small></p>
+            {% if 'catalog.can_unpublish_product' in perms %}
+                <form action="{% url 'catalog:product_unpublish' product.pk %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-secondary">Отменить публикацию</button>
+                </form>
             {% endif %}
-            <div class="card-body">
-                <h4 class="card-title">{{ product.category }} -> {{ product.name }}</h4>
-                <h5 class="card-title">{{ product.price }} руб.</h5>
-                <p class="card-text">{{ product.description }}</p>
-                <p class="card-text"><small class="text-body-secondary">Добавлено: {{ product.created_at | date:"d M Y" }}</small></p>
-                <p class="card-text"><small class="text-body-secondary">Обновлено: {{ product.updated_at | date:"d M Y" }}</small></p>
-                <a href="{% url 'catalog:product_update' product.pk %}" class="btn btn-secondary">Редактировать</a>
-                <a href="{% url 'catalog:product_delete' product.pk %}" class="btn btn-danger">Удалить</a>
-                <a href="{% url 'catalog:product_list' %}" class="btn btn-primary">Назад</a>
-            </div>
+            {% if user == product.owner %}
+            <a href="{% url 'catalog:product_update' product.pk %}" class="btn btn-secondary">Редактировать</a>
+            {% endif %}
+            {% if user == product.owner or perms.catalog.delete_product %}
+            <a href="{% url 'catalog:product_delete' product.pk %}" class="btn btn-danger">Удалить</a>
+            {% endif %}
+            <a href="{% url 'catalog:product_list' %}" class="btn btn-primary">Назад</a>
+        </div>
         {% else %}
         <p>Для просмотра информации требуется авторизация</p>
         {% endif %}
