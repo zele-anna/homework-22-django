@@ -13,6 +13,9 @@
           <a class="nav-link" href="{% url 'catalog:product_list' %}">Каталог</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="{% url 'catalog:category_list' %}">Категории</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="{% url 'catalog:contacts' %}">Контакты</a>
         </li>
         {% if user.is_authenticated %}
