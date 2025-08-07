@@ -1,0 +1,11 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="row text-center">
+    <div class="col-4">
+        {% for category in category_list %}
+        <a href="{% url 'catalog:product_by_cat_list' category.pk %}" class="btn btn-primary">{{ category.name }}</a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

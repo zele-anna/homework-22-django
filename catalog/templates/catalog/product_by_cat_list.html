@@ -1,0 +1,21 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="row text-center">
+    {% for product in product_list %}
+    <div class="col-4">
+        <div class="card w-75" style="width: 18rem;">
+            <img src="{{ product.image | media_filter }}" class="card-img-top" alt="Изображение отсутствует">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.description | truncatechars:100 }}</p>
+                <p>{{ product.price }}</p>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'catalog:product_detail' product.pk %}" class="btn btn-primary">Смотреть</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
